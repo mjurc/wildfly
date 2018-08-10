@@ -88,7 +88,7 @@
                 <extension module="org.wildfly.extension.ee-security"/>
                 <extension module="org.wildfly.extension.elytron"/>
                 <extension module="org.wildfly.extension.microprofile.config-smallrye" />
-                <extension module="org.wildfly.extension.microprofile.opentracing-smallrye" />
+                <extension module="org.wildfly.extension.microprofile.opentracing" />
             </excluded-extensions>
         </host-exclude>
         <host-exclude name="WildFly10.1">
@@ -99,7 +99,7 @@
                 <extension module="org.wildfly.extension.ee-security"/>
                 <extension module="org.wildfly.extension.elytron"/>
                 <extension module="org.wildfly.extension.microprofile.config-smallrye" />
-                <extension module="org.wildfly.extension.microprofile.opentracing-smallrye" />
+                <extension module="org.wildfly.extension.microprofile.opentracing" />
             </excluded-extensions>
         </host-exclude>
         <host-exclude name="WildFly11.0">
@@ -107,7 +107,7 @@
             <excluded-extensions>
                 <extension module="org.wildfly.extension.ee-security"/>
                 <extension module="org.wildfly.extension.microprofile.config-smallrye" />
-                <extension module="org.wildfly.extension.microprofile.opentracing-smallrye" />
+                <extension module="org.wildfly.extension.microprofile.opentracing" />
             </excluded-extensions>
         </host-exclude>
         <host-exclude name="WildFly12.0">
@@ -115,7 +115,7 @@
             <excluded-extensions>
                 <extension module="org.wildfly.extension.ee-security"/>
                 <extension module="org.wildfly.extension.microprofile.config-smallrye" />
-                <extension module="org.wildfly.extension.microprofile.opentracing-smallrye" />
+                <extension module="org.wildfly.extension.microprofile.opentracing" />
             </excluded-extensions>
         </host-exclude>
         <!--
@@ -123,6 +123,7 @@
             <host-release id="WildFly13.0"/>
             <excluded-extensions>
                 <extension module="org.wildfly.extension.microprofile.config-smallrye" />
+                <extension module="org.wildfly.extension.microprofile.opentracing" />
             </excluded-extensions>
         </host-exclude>
         -->

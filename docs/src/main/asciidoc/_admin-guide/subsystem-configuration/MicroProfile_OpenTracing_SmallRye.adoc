@@ -10,15 +10,15 @@ Support for https://microprofile.io/project/eclipse/microprofile-opentracing[Ecl
 This extension is included in the standard configurations included in the WildFly distribution.
 
 You can also add the extension to a configuration without it either by adding
-an `<extension module="org.wildfly.extension.microprofile.opentracing-smallrye"/>`
+an `<extension module="org.wildfly.extension.microprofile.opentracing"/>`
 element to the xml or by using the following CLI operation:
 
 [source]
 ----
-[standalone@localhost:9990 /] /extension=org.wildfly.extension.microprofile.opentracing-smallrye:add
+[standalone@localhost:9990 /] /extension=org.wildfly.extension.microprofile.opentracing:add
 {"outcome" => "success"}
 
-[standalone@localhost:9990 /] /subsystem=microprofile-opentracing-smallrye:add
+[standalone@localhost:9990 /] /subsystem=microprofile-opentracing:add
 {
     "outcome" => "success",
     "response-headers" => {

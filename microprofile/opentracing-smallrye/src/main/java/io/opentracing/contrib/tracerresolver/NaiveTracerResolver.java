@@ -1,7 +1,7 @@
 package io.opentracing.contrib.tracerresolver;
 
 import io.opentracing.Tracer;
-import org.wildfly.extension.microprofile.opentracing.smallrye.TracingLogger;
+import org.wildfly.microprofile.opentracing.smallrye.TracingLogger;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
