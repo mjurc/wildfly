@@ -39,7 +39,7 @@
         <module name="javaee.api"/>
         <module name="javax.enterprise.api" />
 
-        <module name="org.slf4j" export="true"/>
+        <module name="org.slf4j"/>
         <module name="org.apache.httpcomponents"/>
 
         <module name="org.jboss.logging"/>
