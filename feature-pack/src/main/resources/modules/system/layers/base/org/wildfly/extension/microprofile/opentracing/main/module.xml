@@ -31,6 +31,7 @@
         <module name="org.jboss.metadata"/>
         <module name="org.jboss.modules"/>
         <module name="org.jboss.staxmapper"/>
+        <module name="org.wildfly.security.elytron"/>
 
         <module name="javax.enterprise.api" />
         <module name="org.wildfly.microprofile.opentracing-smallrye"/>

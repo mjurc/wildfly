@@ -22,31 +22,25 @@
 
 package org.wildfly.extension.microprofile.opentracing;
 
-import java.util.Arrays;
-import java.util.Collection;
 import org.jboss.as.controller.AttributeDefinition;
 import org.jboss.as.controller.PersistentResourceDefinition;
-import org.jboss.as.controller.registry.ManagementResourceRegistration;
+import org.jboss.as.controller.ReloadRequiredRemoveStepHandler;
+
+import java.util.Collection;
+import java.util.Collections;
 
 public class SubsystemDefinition extends PersistentResourceDefinition {
-    static AttributeDefinition[] ATTRIBUTES = {};
-
     protected SubsystemDefinition() {
         super(
             SubsystemExtension.SUBSYSTEM_PATH,
             SubsystemExtension.getResourceDescriptionResolver(SubsystemExtension.SUBSYSTEM_NAME),
             SubsystemAdd.INSTANCE,
-            SubsystemRemove.INSTANCE
+            ReloadRequiredRemoveStepHandler.INSTANCE
         );
     }
 
     @Override
     public Collection<AttributeDefinition> getAttributes() {
-        return Arrays.asList(ATTRIBUTES);
-    }
-
-    @Override
-    public void registerOperations(ManagementResourceRegistration resourceRegistration) {
-        super.registerOperations(resourceRegistration);
+        return Collections.emptyList();
     }
 }

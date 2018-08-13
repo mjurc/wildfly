@@ -27,7 +27,6 @@ import org.jboss.as.ee.weld.WeldDeploymentMarker;
 import org.jboss.as.server.deployment.DeploymentPhaseContext;
 import org.jboss.as.server.deployment.DeploymentUnit;
 import org.jboss.as.server.deployment.DeploymentUnitProcessor;
-import org.jboss.as.server.deployment.Phase;
 import org.jboss.as.web.common.WarMetaData;
 import org.jboss.as.weld.deployment.WeldPortableExtensions;
 import org.jboss.metadata.javaee.spec.ParamValueMetaData;
@@ -35,14 +34,12 @@ import org.jboss.metadata.web.jboss.JBossWebMetaData;
 import org.jboss.metadata.web.spec.ListenerMetaData;
 import org.wildfly.microprofile.opentracing.smallrye.TracerInitializer;
 import org.wildfly.microprofile.opentracing.smallrye.TracingCDIExtension;
+import org.wildfly.security.manager.WildFlySecurityManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TracingDeploymentProcessor implements DeploymentUnitProcessor {
-  public static final Phase PHASE = Phase.POST_MODULE;
-  public static final int PRIORITY = 0x4000;
-
   @Override
   public void deploy(DeploymentPhaseContext deploymentPhaseContext) {
     TracingExtensionLogger.ROOT_LOGGER.processingDeployment();
@@ -131,9 +128,9 @@ public class TracingDeploymentProcessor implements DeploymentUnitProcessor {
   }
 
   private String getServiceName(DeploymentUnit deploymentUnit) {
-    String serviceName = System.getProperty("JAEGER_SERVICE_NAME");
+    String serviceName = WildFlySecurityManager.getPropertyPrivileged("JAEGER_SERVICE_NAME", "");
     if (null == serviceName || serviceName.isEmpty()) {
-      serviceName = System.getenv("JAEGER_SERVICE_NAME");
+      serviceName = WildFlySecurityManager.getEnvPropertyPrivileged("JAEGER_SERVICE_NAME", "");
     }
 
     if (null == serviceName || serviceName.isEmpty()) {

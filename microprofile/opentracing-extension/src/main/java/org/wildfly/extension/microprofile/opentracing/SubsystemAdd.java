@@ -26,13 +26,14 @@ import org.jboss.as.controller.AbstractBoottimeAddStepHandler;
 import org.jboss.as.controller.OperationContext;
 import org.jboss.as.server.AbstractDeploymentChainStep;
 import org.jboss.as.server.DeploymentProcessorTarget;
+import org.jboss.as.server.deployment.Phase;
 import org.jboss.dmr.ModelNode;
 
 class SubsystemAdd extends AbstractBoottimeAddStepHandler {
     static final SubsystemAdd INSTANCE = new SubsystemAdd();
 
     private SubsystemAdd() {
-        super(SubsystemDefinition.ATTRIBUTES);
+        super();
     }
 
     @Override
@@ -41,17 +42,16 @@ class SubsystemAdd extends AbstractBoottimeAddStepHandler {
         context.addStep(new AbstractDeploymentChainStep() {
             public void execute(DeploymentProcessorTarget processorTarget) {
                 processorTarget.addDeploymentProcessor(
-                    SubsystemExtension.SUBSYSTEM_NAME,
-                    TracingDependencyProcessor.PHASE,
-                    TracingDependencyProcessor.PRIORITY,
-                    new TracingDependencyProcessor()
+                        SubsystemExtension.SUBSYSTEM_NAME,
+                        Phase.DEPENDENCIES,
+                        Phase.DEPENDENCIES_MODULE,
+                        new TracingDependencyProcessor()
                 );
 
-                processorTarget.addDeploymentProcessor(
-                    SubsystemExtension.SUBSYSTEM_NAME,
-                    TracingDeploymentProcessor.PHASE,
-                    TracingDeploymentProcessor.PRIORITY,
-                    new TracingDeploymentProcessor()
+                processorTarget.addDeploymentProcessor(SubsystemExtension.SUBSYSTEM_NAME,
+                        Phase.POST_MODULE,
+                        Phase.POST_MODULE_WELD_PORTABLE_EXTENSIONS + 11,
+                        new TracingDeploymentProcessor()
                 );
             }
         }, OperationContext.Stage.RUNTIME);
